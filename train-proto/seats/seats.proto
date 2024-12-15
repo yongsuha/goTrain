@@ -1,0 +1,51 @@
+syntax = "proto3";
+option go_package = "./";
+import "google/protobuf/empty.proto";
+
+message AddSeatReq {
+  int64 TrainId = 1;
+  string SeatNumber = 2;
+  string SeatType = 3;
+  int64 IsAvailable = 4; // 1. 可选 2. 不可选
+}
+
+message AddSeatResp {
+  int64 Id = 1;
+}
+
+message DelSeatReq {
+  int64 TrainId = 1;
+}
+
+message UpdateSeatReq {
+  int64 TrainId = 1;
+  string SeatNumber = 2;
+  int64 IsAvailable = 3;
+}
+
+message UpdateSeatResp {
+  int64 TrainId = 1;
+  string SeatNumber = 2;
+}
+
+message GetSeatDetailReq {
+  int64 TrainId = 1;
+  string SeatNumber = 2;
+}
+
+message GetSeatDetailResp {
+  int64 TrainId = 1;
+  string SeatNumber = 2;
+  string SeatType = 3;
+  int64 IsAvailable = 4;
+  int64 SeatId = 5;
+  string CreateTime = 6;
+  string UpdateTime = 7;
+}
+
+service SeatService {
+  rpc AddSeat (AddSeatReq) returns (AddSeatResp);
+  rpc DelSeat (DelSeatReq) returns (google.protobuf.Empty);
+  rpc UpdateSeat (UpdateSeatReq) returns (UpdateSeatResp);
+  rpc GetSeatDetail (GetSeatDetailReq) returns (GetSeatDetailResp);
+}

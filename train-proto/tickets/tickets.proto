@@ -1,0 +1,66 @@
+syntax = "proto3";
+option go_package = "./";
+import "google/protobuf/empty.proto";
+
+message AddTicketReq {
+  int64 UserId = 1;
+  int64 TrainId = 2;
+  int64 SeatId = 3;
+  int64 Price = 4;
+  string PurchaseTime = 5;
+}
+
+message AddTicketResp {
+  int64 TicketId = 1;
+}
+
+message DelTicketReq {
+  int64 TicketId = 1;
+}
+
+message GetTicketDetailReq {
+  int64 TicketId = 1;
+  int64 UserId = 2;
+}
+
+message GetTicketDetailResp {
+  repeated TicketInfo TicketDetail = 1;
+}
+
+message TicketInfo {
+  int64 TicketId = 1;
+  int64 UserId = 2;
+  int64 TrainId = 3;
+  int64 SeatId = 4;
+  int64 Price = 5;
+  string PurchaseTime = 6;
+  string CreateTime = 7;
+  string UpdateTime = 8;
+}
+
+message UpdateTicketReq {
+  int64 TicketId = 1;
+  int64 UserId = 2;
+  int64 TrainId = 3;
+  int64 SeatId = 4;
+  int64 Price = 5;
+  string PurchaseTime = 6;
+}
+
+message UpdateTicketResp {
+  int64 TicketId = 1;
+  int64 UserId = 2;
+  int64 TrainId = 3;
+  int64 SeatId = 4;
+  int64 Price = 5;
+  string PurchaseTime = 6;
+  string CreateTime = 7;
+  string UpdateTime = 8;
+}
+
+service TicketService {
+  rpc AddTicket (AddTicketReq) returns (AddTicketResp);
+  rpc DelTicket (DelTicketReq) returns (google.protobuf.Empty);
+  rpc GetTicketDetail (GetTicketDetailReq) returns (GetTicketDetailResp);
+  rpc UpdateTicket (UpdateTicketReq) returns (UpdateTicketResp);
+}

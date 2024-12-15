@@ -1,0 +1,58 @@
+syntax = "proto3";
+option go_package = "./";
+import "google/protobuf/empty.proto";
+
+message AddTrainReq {
+  string TrainNumber = 1;
+  string DepartureStation = 2;
+  string ArrivalStation = 3;
+  string DepartureTime = 4;
+  string ArrivalTime = 5;
+  repeated SeatTypeAndNum Seats = 6;
+}
+
+message SeatTypeAndNum {
+  string SeatType = 1;
+  int64 SeatNum = 2;
+}
+
+message AddTrainResp {
+  int64 Id = 1;
+}
+
+message UpdateTrainReq {
+  int64 TrainId = 1;
+  string TrainNumber = 2;
+  string DepartureStation = 3;
+  string ArrivalStation = 4;
+  string DepartureTime = 5;
+  string ArrivalTime = 6;
+  repeated SeatTypeAndNum Seats = 7;
+}
+
+message GetTrainDetailReq {
+  int64 Id = 1;
+}
+
+message GetTrainDetailResp {
+  int64 TrainId = 1;
+  string TrainNumber = 2;
+  string DepartureStation = 3;
+  string ArrivalStation = 4;
+  string DepartureTime = 5;
+  string ArrivalTime = 6;
+  int64 TotalSeat = 7;
+  string CreateTime = 8;
+  string UpdateTime = 9;
+}
+
+message DelTrainReq {
+  int64 TrainId = 1;
+}
+
+service TrainService {
+  rpc AddTrain (AddTrainReq) returns (AddTrainResp);
+  rpc Update (UpdateTrainReq) returns (google.protobuf.Empty);
+  rpc GetTrainDetail (GetTrainDetailReq) returns (GetTrainDetailResp);
+  rpc DelTrain (DelTrainReq) returns (google.protobuf.Empty);
+}

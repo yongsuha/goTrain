@@ -1,0 +1,60 @@
+syntax = "proto3";
+option go_package = "./";
+import "google/protobuf/empty.proto";
+
+message AddUserReq {
+  string UserName = 1;
+  string PassWord = 2;
+  string Email = 3;
+  string PhoneNumber = 4;
+}
+
+message AddUserResp {
+  int64 UserId = 1;
+}
+
+message DelUserReq {
+  int64 UserId = 1;
+}
+
+message GetUserDetailReq {
+  int64 UserId = 1;
+  string UserName = 2;
+  string Email = 3;
+  string PhoneNumber = 4;
+}
+
+message GetUserDetailResp {
+  int64 UserId = 1;
+  string UserName = 2;
+  string Email = 3;
+  string PhoneNumber = 4;
+  string PassWord = 5;
+  string CreateTime = 6;
+  string UpdateTime = 7;
+}
+
+message UpdateUserReq {
+  int64 UserId = 1;
+  string UserName = 2;
+  string Email = 3;
+  string PhoneNumber = 4;
+  string PassWord = 5;
+}
+
+message UpdateUserResp {
+  int64 UserId = 1;
+  string UserName = 2;
+  string Email = 3;
+  string PhoneNumber = 4;
+  string PassWord = 5;
+  string CreateTime = 6;
+  string UpdateTime = 7;
+}
+
+service UserService {
+  rpc AddUser (AddUserReq) returns (AddUserResp);
+  rpc DelUser (DelUserReq) returns (google.protobuf.Empty);
+  rpc GetUserDetail (GetUserDetailReq) returns (GetUserDetailResp);
+  rpc UpdateUser (UpdateUserReq) returns (UpdateUserResp);
+}

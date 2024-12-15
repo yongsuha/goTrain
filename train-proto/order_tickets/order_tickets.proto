@@ -1,0 +1,30 @@
+syntax = "proto3";
+option go_package = "./";
+import "google/protobuf/empty.proto";
+
+message AddOrderTicketReq {
+  int64 OrderId = 1;
+  int64 TicketId = 2;
+}
+
+message DelOrderTicketReq {
+  int64 OrderId = 1;
+  int64 TicketId = 2;
+}
+
+message GetOTDetailReq {
+  int64 OrderId = 1;
+}
+
+message GetOTDetailResp {
+  int64 OrderId = 1;
+  int64 TicketId = 2;
+  string CreateTime = 3;
+  string UpdateTime = 4;
+}
+
+service OrderTicketService {
+  rpc AddOrderTicket (AddOrderTicketReq) returns (google.protobuf.Empty);
+  rpc DelOrderTicket (DelOrderTicketReq) returns (google.protobuf.Empty);
+  rpc GetOTDetail (GetOTDetailReq) returns (GetOTDetailResp);
+}

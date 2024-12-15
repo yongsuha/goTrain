@@ -1,0 +1,54 @@
+syntax = "proto3";
+option go_package = "./";
+import "google/protobuf/empty.proto";
+
+message AddOrderReq {
+  int64 UserId = 1;
+  int64 TotalPrice = 2;
+  string OrderStatus = 3;
+}
+
+message AddOrderResp {
+  int64 OrderId = 1;
+}
+
+message DelOrderReq {
+  int64 OrderId = 1;
+}
+
+message GetOrderDetailReq {
+  int64 OrderId = 1;
+  int64 UserId = 2;
+}
+
+message GetOrderDetailResp {
+  int64 OrderId = 1;
+  int64 UserId = 2;
+  int64 TotalPrice = 3;
+  string OrderStatus = 4;
+  string CreateTime = 5;
+  string UpdateTime = 6;
+}
+
+message UpdateOrderReq {
+  int64 OrderId = 1;
+  int64 UserId = 2;
+  int64 TotalPrice = 3;
+  string OrderStatus = 4;
+}
+
+message UpdateOrderResp {
+  int64 OrderId = 1;
+  int64 UserId = 2;
+  int64 TotalPrice = 3;
+  string OrderStatus = 4;
+  string CreateTime = 5;
+  string UpdateTime = 6;
+}
+
+service OrdersService {
+  rpc AddOrder (AddOrderReq) returns (AddOrderResp);
+  rpc DelOrder (DelOrderReq) returns (google.protobuf.Empty);
+  rpc GetOrderDetail (GetOrderDetailReq) returns (GetOrderDetailResp);
+  rpc UpdateOrder (UpdateOrderReq) returns (UpdateOrderResp);
+}
