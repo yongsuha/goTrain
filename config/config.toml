@@ -10,7 +10,7 @@ username = "root"
 password = "Dhrsny678bjsfb@!"
 host = "117.78.2.33"
 port = 3306
-name = "TicketTrain"
+name = "TrainTicket"
 max_connections = 100
 
 # 缓存配置
@@ -26,3 +26,11 @@ max_active_connections = 500
 [log]
 level = "info"
 path = "/Users/tal/go/goTrain/log/train.log"
+
+# Elasticsearch 配置
+[elasticsearch]
+address = "http://117.78.2.33:9200"
+timeout = 5
+max_idle_connections = 10
+max_active_connections = 100
+connection_request_timeout = 2

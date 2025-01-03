@@ -3,8 +3,8 @@ package mysql
 import (
 	"context"
 	"errors"
+	"github.com/yongsuha/goTrain/train-rpc/pkg/db"
 	"github.com/yongsuha/goTrain/train-rpc/source/biz"
-	"github.com/yongsuha/goTrain/train-rpc/source/db"
 	"gorm.io/gorm"
 )
 
@@ -20,7 +20,7 @@ var (
 
 func (t *TicketsConfModel) CreateTicket() error {
 	ticketDB = db.GetDB()
-	ticketDB.Create(biz.TicketsConf{})
+	//ticketDB.Create(biz.TicketsConf{})
 	if ticketDB == nil {
 		return errors.New("the tickets table init failed")
 	}

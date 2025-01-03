@@ -3,8 +3,9 @@ package main
 import (
 	"fmt"
 	"github.com/BurntSushi/toml"
+	"github.com/yongsuha/goTrain/train-rpc/pkg/db"
+	"github.com/yongsuha/goTrain/train-rpc/pkg/redisCli"
 	"github.com/yongsuha/goTrain/train-rpc/source/data/mysql"
-	"github.com/yongsuha/goTrain/train-rpc/source/db"
 	"log"
 )
 
@@ -49,6 +50,7 @@ func main() {
 	fmt.Printf("日志配置: %+v\n", config.Log)
 
 	db.GetDB()
+	redisCli.GetRedis(0)
 	err = mysql.NewTrainsConfModel().CreateTrain()
 	if err != nil {
 		log.Fatalln("the trains table init failed")

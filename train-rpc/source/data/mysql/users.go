@@ -2,17 +2,10 @@ package mysql
 
 import (
 	"context"
-	"database/sql"
 	"errors"
+	"github.com/yongsuha/goTrain/train-rpc/pkg/db"
 	"github.com/yongsuha/goTrain/train-rpc/source/biz"
-	"github.com/yongsuha/goTrain/train-rpc/source/db"
 	"gorm.io/gorm"
-	"sync"
-)
-
-var (
-	userDb *sql.DB
-	once   sync.Once
 )
 
 type UsersConfModel struct{}
@@ -27,7 +20,7 @@ var (
 
 func (u *UsersConfModel) CreateUser() error {
 	userDB = db.GetDB()
-	userDB.Create(biz.UsersConf{})
+	//userDB.Create(biz.UsersConf{})
 	if userDB == nil {
 		return errors.New("the users table init failed")
 	}
